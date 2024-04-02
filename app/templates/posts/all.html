@@ -1,0 +1,56 @@
+{% from "posts/section_macro.html" import make_posts_section %}
+{% from "utils/nojs_pagination_macro.html" import make_pagination %}
+{% extends 'base.html' %}
+
+{% block head %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/all-posts.css') }}">
+    <title>Все посты — {{ config.SITE_NAME }}</title>
+
+    <script>
+        let currentPage = {{ pagination.current_page }};
+        const totalPages = {{ pagination.total_pages }};
+    </script>
+    <script src="{{ url_for('static', filename='js/auto-load.js') }}"></script>
+{% endblock %}
+
+{% block content %}
+    <form class="sort-filter-options" method="GET">
+        <input type="hidden" name="page" value="{{ pagination.current_page }}" />
+        <select class="sorting" name="sorting">
+            <option {% if request.args.get('sorting') == "created_at" %} selected {% endif %} value="created_at">Дате публикации</option>
+            <option {% if request.args.get('sorting') == "uploaded_at" %} selected {% endif %} value="uploaded_at">Дате загрузки</option>
+            <option {% if request.args.get('sorting') == "total_votes" %} selected {% endif %} value="total_votes">По количеству голосов</option>
+        </select>
+        <select class="order" name="order">
+            <option {% if request.args.get('order') == "asc" %} selected {% endif %} value="asc">↑</option>
+            <option {% if request.args.get('order') == "desc" %} selected {% endif %} value="desc">↓</option>
+        </select>
+        <select name="author_id">
+            <option value="">Все авторы</option>
+            {% for author in authors %}
+                <option {% if request.args.get('author_id') == author.id|string %} selected {% endif %} value="{{ author.id }}">{{ author.name }}</option>
+            {% endfor %}
+        </select>
+        <ul class="filters">
+            <li>
+                <input type="checkbox" {% if request.args.get('with_caption') == "on" %} checked {% endif %} id="with_caption" name="with_caption" />
+                <label for="with_caption">Только с описанием</label>
+            </li>
+            <li>
+                <input type="checkbox" {% if request.args.get('only_voted') == "on" %} checked {% endif %} id="only_voted" name="only_voted" />
+                <label for="only_voted">Только с моим голосом</label>
+            </li>
+        </ul>
+        <button type="submit">↻</button>
+    </form>
+    <div id="gallery">
+        {% if posts %}
+            {{ make_posts_section(posts, pagination) }}
+        {% else %}
+        <p>Постов не найдено.</p>
+        {% endif %}
+    </div>
+    <p id="loading" class="hide">Загрузка...</p>
+
+    <noscript>{{ make_pagination(pagination) }}</noscript>
+{% endblock %}

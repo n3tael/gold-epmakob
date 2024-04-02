@@ -1,0 +1,12 @@
+<header>
+    <div class="container">
+        <a href="/">
+            <img class="logo" src="{{ url_for('static', filename='logo.webp') }}" alt="Золотая галерея Ермакова"/>
+        </a>
+        <ul class="header-links">
+            <li>
+                <a href="{{ url_for('posts.all_posts') }}">Все посты</a>
+            </li>
+        </ul>
+    </div>
+</header>

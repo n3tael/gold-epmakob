@@ -1,0 +1,73 @@
+@import url('/static/css/gallery.css');
+@import url('/static/css/pagination.css');
+
+.author-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: var(--bg-1);
+    border: 1px solid var(--bg-2);
+    border-radius: 8px;
+    padding: 16px;
+    margin-bottom: 8px;
+}
+
+.author-card p {
+    margin: 0;
+}
+
+.author-stats {
+    text-align: end;
+}
+
+.author-card h2 {
+    margin: 0 0 4px 0;
+    border: 0;
+}
+
+.author-name-container {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 4px;
+}
+
+.author-name-container h2 {
+    margin: 0;
+}
+
+a.author-tg svg {
+    width: 1rem;
+}
+
+a.author-tg {
+    display: flex;
+    padding: 2px 4px;
+    align-items: center;
+    gap: 4px;
+    color: var(--fg-1);
+    border: 1px solid var(--bg-2);
+    border-radius: 8px;
+    transition: border-color, background var(--transition-time) ease-out;
+}
+
+a.author-tg:hover {
+    background: var(--bg-2);
+    border-color: var(--bg-3);
+    color: var(--fg-1);
+}
+
+.sort-options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+select.order {
+    margin-left: -9px;
+    border-radius: 0 8px 8px 0;
+}
+
+select.sorting {
+    border-radius: 8px 0 0 8px;
+}

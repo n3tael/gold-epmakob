@@ -1,0 +1,28 @@
+@import url('/static/css/gallery.css');
+@import url('/static/css/pagination.css');
+
+.sort-filter-options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+select.order {
+    margin-left: -9px;
+    border-radius: 0 8px 8px 0;
+}
+
+select.sorting {
+    border-radius: 8px 0 0 8px;
+}
+
+ul.filters {
+    margin: 0;
+    padding: 0;
+}
+
+ul.filters li {
+    display: flex;
+    gap: 4px;
+    align-items: center;
+}

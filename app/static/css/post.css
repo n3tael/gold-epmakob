@@ -1,0 +1,98 @@
+.page-post aside.sidebar {
+    float: left;
+    width: 19em;
+}
+
+.page-post aside.sidebar h3:first-child {
+    margin: 0 0 10px 0;
+}
+
+.page-post aside.sidebar h3:not(:first-child) {
+    margin: 10px 0;
+}
+
+.page-post aside.sidebar button.vote {
+    background: none;
+    border: none;
+    padding: 0;
+    font-family: var(--main-font);
+    font-size: 14px;
+    color: var(--fg-2);
+    cursor: pointer;
+}
+.page-post aside.sidebar button.vote:hover {
+    color: var(--fg-3);
+}
+
+.page-post ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.page-post section.content {
+    margin-left: 19em;
+    overflow: visible;
+    padding-left: 1em;
+}
+
+.page-post section.content .post-image {
+    width: 100%;
+    border-radius: 4px;
+}
+
+.page-post section.content .post-caption {
+	word-wrap: break-word;
+	padding: 4px 8px;
+	margin: 0;
+	background: var(--bg-2);
+	border-left: 4px solid var(--bg-3);
+	border-radius: 4px;
+}
+
+@media screen and (max-width: 480px) {
+    .page-post aside.sidebar {
+        float: none;
+        width: auto;
+    }
+
+    .page-post section.content {
+        margin: 0;
+        padding: 0;
+    }
+
+    .page-post {
+        display: flex;
+        flex-direction: column-reverse;
+    }
+
+    .page-post section.content .post-caption {
+        margin-bottom: 8px;
+    }
+}
+
+.link-copy-container {
+    display: flex;
+    align-content: center;
+    margin-top: 8px;
+    width: 100%;
+}
+
+input.link-copy {
+    background: var(--bg-2);
+    border: 1px solid var(--bg-2);
+    color: var(--fg-2);
+    padding: 8px;
+    border-radius: 8px;
+    transition: border .2s ease-out;
+    width: 100%
+}
+
+.link-copy-container:not(:has(button.link-copy.hide)) > input.link-copy {
+    border-radius: 8px 0 0 8px;
+}
+
+button.link-copy {
+    border-radius: 0 8px 8px 0;
+    margin-left: -1px;
+}

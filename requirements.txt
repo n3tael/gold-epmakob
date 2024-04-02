@@ -1,0 +1,10 @@
+cheroot
+flask
+flask_wtf
+requests
+beautifulsoup4
+lxml
+Pillow
+click
+Flask-Squeeze
+Flask-Minify

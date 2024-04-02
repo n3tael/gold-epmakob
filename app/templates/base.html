@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta property="og:title" content="{{ config.SITE_NAME }}" />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="{{ url_for('index.index', _external=True) }}" />
+        <meta name="theme-color" content="#F9D054">
+        {# * if page has image:
+            <meta property="og:image" content="{{ url_for('images.image', _external=True, id=<id>) }}" />
+            <meta name="twitter:card" content="summary_large_image">
+
+        * preferably:
+            <meta property="og:description" content="..." />
+        #}
+        {% block meta %}{% endblock %}
+        <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='favicon.ico') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}">
+        {% block head %}{% endblock %}
+    </head>
+    <body>
+        {% include "header.html" %}
+        <main class="container">
+            {% block content %}{% endblock %}
+        </main>
+        {% include "footer.html" %}
+    </body>
+</html>

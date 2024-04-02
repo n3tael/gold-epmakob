@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% block meta %}
+    {% if post.caption %}
+        <meta property="og:description" content="{{ post.caption }}" />
+    {% endif %}
+    <meta property="og:image" content="{{ url_for('images.image', _external=True, id=post.image_id) }}" />
+    <meta name="twitter:card" content="summary_large_image">
+{% endblock %}
+
+{% block head %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/post.css') }}">
+    <title>Пост №{{ post.id }} — {{ config.SITE_NAME }}</title>
+{% endblock %}
+
+{% block content %}
+    <div class="page-post">
+        <aside class="sidebar">
+            <h3>Информация</h3>
+            <ul>
+                <li>ID: {{ post.id }}</li>
+                <li>Автор: <a href="{{ url_for('authors.author', id=post.author_id) }}">{{ post.author_name }}</a></li>
+                <li>Рейтинг: {{ post.total_votes }}</li>
+                <li>Опубликовано: {{ post.created_at }}</li>
+                <li>Загружено: {{ post.uploaded_at }}</li>
+                <div class="link-copy-container">
+                    <input class="link-copy" value="{{ url_for('posts.post', _external=True, id=post.id) }}" disabled>
+                    <button class="link-copy hide">📋</button>
+                </div>
+            </ul>
+            <h3>Действия</h3>
+            <ul>
+                <li><a href="https://t.me/{{ post.chat }}/{{ post.message_id }}" target="_blank">Посмотреть в чате</a></li>
+                <li>
+                    <form method="POST">
+                        <input type="hidden" name="csrf_token" value = "{{ csrf_token() }}" />
+                        <button type="submit" class="vote">{% if post.is_voted %}Отменить голос{% else %}Проголосовать{% endif %}</button>
+                    </form>
+                </li>
+            </ul>
+        </aside>
+        <section class="content">
+            {% for image in images %}
+                <img class="post-image" src="{{ url_for('images.image', id=image.id) }}"/>
+            {% endfor %}
+            {% if post.caption %}
+                <p class="post-caption">{{ post.caption }}</p>
+            {% endif %}
+        </section>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/post-clipboard.js') }}"></script>
+{% endblock %}

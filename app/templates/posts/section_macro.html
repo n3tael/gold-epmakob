@@ -1,0 +1,19 @@
+{% macro make_posts_section(posts, pagination) %}
+    <section>
+        <h2>Страница {{ pagination.current_page }} / {{ pagination.total_pages }}</h2>
+        <ul>
+        {% for post in posts %}
+            <li>
+                <figure>
+                    <img alt="Загрузка..." src="{{ url_for('images.image', id=post.image_id) }}">
+                    <a href="{{ url_for('posts.post', id=post.id) }}" target="_blank"></a>
+                    {% if post.caption %}
+                    <div class="thumb-caption">{{ post.caption }}</div>
+                    {% endif %}
+                    <div class="thumb-stars">★ {{ post.total_votes }}</div>
+                </figure>
+            </li>
+        {% endfor %}
+        </ul>
+    </section>
+{% endmacro %}

@@ -1,0 +1,13 @@
+#!/usr/bin/pypy3
+
+from cheroot.wsgi import Server
+from app import create_app
+
+app = create_app()
+server = Server(('127.0.0.1', 8000), app.wsgi_app)
+
+if __name__ == '__main__':
+    try:
+        server.start()
+    except KeyboardInterrupt:
+        server.stop()

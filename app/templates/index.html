@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+
+{% block head %}
+    <title>{{ config.SITE_NAME }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main-page.css') }}">
+{% endblock %}
+
+{% block content %}
+    <img src="{{ url_for('static', filename='logo-full.webp') }}" class="home-logo">
+    <ul class="quick-links">
+        <a class="latest-link" href="{{ url_for('posts.all_posts', page=1, sorting='created_at', order='asc') }}">
+            <img src="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/72x72/1f552.png">
+            Последнее
+        </a>
+        <a class="top-link" href="{{ url_for('posts.all_posts', page=1, sorting='total_votes', order='desc') }}">
+            <img src="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/72x72/1f451.png">
+            Лучшее
+        </a>
+        <a class="random-link" href="{{ url_for('posts.random_post') }}">
+            <img src="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/72x72/1f3b2.png">
+            Случайное
+        </a>
+    </ul>
+    <div class="home-blocks">
+        <div class="home-posts-blocks">
+            <div class="home-block best-rating">
+                <h4>Лучшая оценка</h4>
+                <ul>
+                    {% for post in best_posts %}
+                    <li>
+                        {{ make_post(post) }}
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <div class="home-block latest-posts">
+                <h4>Последнее загруженое</h4>
+                <ul>
+                    {% for post in latest_posts %}
+                    <li>
+                        {{ make_post(post) }}
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+        <div class="home-block stats">
+            <h4>Статистика</h4>
+            <ul>
+                <li>{{ stats.total_posts }} {{ stats.total_posts|plural('пост', 'поста', 'постов') }}</li>
+                <li>{{ stats.total_votes }} {{ stats.total_votes|plural('голос', 'голоса', 'голосов') }}</li>
+                <li>{{ stats.total_authors }} {{ stats.total_authors|plural('автор', 'автора', 'авторов') }}</li>
+            </ul>
+        </div>
+    </div>
+{% endblock %}
+
+{% macro make_post(post) %}
+    <div class="post-container">
+        <img alt="Загрузка..." src="{{ url_for('images.image', id=post.image_id) }}">
+        <a href="{{ url_for('posts.post', id=post.id) }}" target="_blank"></a>
+        {% if post.total_votes >= 1 %}
+        <div class="thumb-stars">★ {{ post.total_votes }}</div>
+        {% endif %}
+    </div>
+{% endmacro %}

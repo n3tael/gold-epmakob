@@ -1,0 +1,39 @@
+{% macro make_pagination(pagination) %}
+    <div class="pagination">
+        <ul>
+            {% if (pagination.total_pages - pagination.current_page) < (pagination.total_pages - 3) %}
+                <li>
+                    <a href="{{ request.url|regex_replace('page=[0-9]+', 'page=1') }}">1</a>
+                </li>
+                <li><span>...</span></li>
+            {% endif %}
+            {% if (pagination.current_page - 1) != 0 %}
+            <li>
+                <a href="{{ request.url|regex_replace('page=[0-9]+', 'page=' + (pagination.current_page - 1)|string) }}">
+                    {{ pagination.current_page - 1 }}
+                </a>
+            </li>
+            {% endif %}
+            <li>
+                <span class="active">{{ pagination.current_page }}</span>
+            </li>
+            {% if (pagination.current_page + 1) <= pagination.total_pages %}
+            <li>
+                <a href="{{ request.url|regex_replace('page=[0-9]+', 'page=' + (pagination.current_page + 1)|string) }}">
+                    {{ pagination.current_page + 1 }}
+                </a>
+            </li>
+            {% endif %}
+            {% if (pagination.total_pages - pagination.current_page) != 0 and
+                (pagination.total_pages - pagination.current_page) != 1
+            %}
+                <li><span>...</span></li>
+                <li>
+                    <a href="{{ request.url|regex_replace('page=[0-9]+', 'page=' + pagination.total_pages|string) }}">
+                        {{ pagination.total_pages }}
+                    </a>
+                </li>
+            {% endif %}
+        </ul>
+    </div>
+{% endmacro %}

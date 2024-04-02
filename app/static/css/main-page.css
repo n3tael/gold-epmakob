@@ -1,0 +1,147 @@
+:root {
+	--bg-latest-link: #171b13;
+	--bg-top-link: #1b1613;
+	--bg-random-link: #19131b;
+}
+
+.home-logo {
+	display: block;
+	max-width: 100%;
+	max-height: 260px;
+	margin: 0 auto 16px;
+}
+
+.quick-links {
+	margin: 10px 0;
+	padding: 0;
+	display: flex;
+	gap: 8px;
+	justify-content: center;
+}
+
+.quick-links a {
+	width: 100px;
+	border: 1px solid var(--bg-2);
+	border-radius: 8px;
+	color: var(--fg-1);
+	transition: background var(--transition-time) ease-out;
+	display: flex;
+	flex-direction: column;
+	gap: 6px;
+	align-items: center;
+	height: 100px;
+	justify-content: center;
+}
+
+.quick-links a:hover {
+	cursor: pointer;
+}
+
+.quick-links a img {
+	width: 36px;
+}
+
+a.latest-link:hover {
+	background: var(--bg-latest-link);
+}
+
+a.top-link:hover {
+	background: var(--bg-top-link);
+}
+
+a.random-link:hover {
+	background: var(--bg-random-link);
+}
+
+.home-blocks {
+	display: flex;
+	gap: 8px;
+	flex-direction: row;
+}
+
+.home-posts-blocks {
+	display: flex;
+	gap: 8px;
+	width: calc(100% - 250px);
+	flex-direction: column;
+}
+
+.home-block {
+	display: flex;
+	padding: 10px;
+	border: 1px solid var(--bg-2);
+	border-radius: 8px;
+	flex-direction: column;
+}
+
+.home-block h4 {
+	font-size: 18px;
+	margin: 0 0 8px;
+}
+
+.home-block ul {
+	margin: 0;
+	padding: 0;
+}
+
+.home-block.best-rating  ul,
+.home-block.latest-posts ul {
+    display: flex;
+	gap: 4px;
+	overflow-x: auto;
+}
+
+.home-block .post-container {
+	display: inline-flex;
+	position: relative;
+	border-radius: 8px;
+	overflow: hidden;
+	border: 2px solid var(--bg-2);
+	border-radius: 12px;
+}
+
+.home-block .post-container > img {
+    width: 224px;
+    height: 126px;
+    object-fit: cover;
+}
+
+.home-block .post-container > a {
+	z-index: 110;
+	position: absolute;
+	display: block;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+}
+
+.home-block ul .thumb-stars {
+    background-color: var(--bg-2);
+    position: absolute;
+    z-index: 120;
+	right: 4px;
+    bottom: 4px;
+    padding: 3px 6px;
+    border-radius: 8px;
+    user-select: none;
+}
+
+.home-block.stats {
+	height: max-content;
+	width: 250px;
+}
+
+@media screen and (max-width: 684px) {
+	.home-blocks {
+		flex-direction: column;
+	}
+
+	.home-posts-blocks {
+		width: 100%;
+	}
+
+	.home-block.stats {
+		width: 100%;
+	}
+}

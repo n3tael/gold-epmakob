@@ -1,0 +1,28 @@
+.pagination {
+    margin: 8px auto 0;
+    background: var(--bg-2);
+    padding: 8px;
+    border-radius: 4rem;
+    width: max-content;
+    user-select: none;
+}
+
+.pagination ul {
+    margin: 0;
+    padding: 0;
+}
+
+.pagination ul li {
+    display: inline-block;
+    margin: 0 2px;
+    padding: 0 3px;
+    border-radius: 4px;
+}
+
+.pagination ul li:has(span.active) {
+    background: var(--bg-3);
+}
+
+.pagination ul li span:not(.active) {
+    color: var(--fg-5);
+}
