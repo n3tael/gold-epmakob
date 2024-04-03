@@ -41,7 +41,7 @@ But if JavaScript not enabled, some features will be missing:
 
 #### Clear expired tokens
 
-1. Run script: `pypy3 utils/add-post.py`
+1. Run script: `pypy3 utils/clear-expired-tokens.py`
 2. Expired tokens cleared.
 
 ## Development server
